@@ -8,6 +8,9 @@ project(lab2)
 
 add_executable(${PROJECT_NAME}
     ${SRC_DIR}/main.cpp
+    ${SRC_DIR}/table.cpp
+    ${SRC_DIR}/table_item.cpp
+    ${SRC_DIR}/struct_synthesis.cpp
 )
 
 include_directories(
