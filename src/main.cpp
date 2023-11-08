@@ -14,8 +14,14 @@ int main()
 
     table my_table(state_file, output_file);
 
-    my_table.print();
     struct_synthesis synt(&my_table);
+
+    synt.sdnf();
+    synt.mdnf();
+
+    std::ofstream out(O_OUTPUT_FILE);
+
+    synt.print(out);
 
     return 0;
 }

@@ -39,13 +39,17 @@ class table {
 class struct_synthesis {
     private:
         uint32_t d_tg_count = 0;
+        uint32_t input_lines_count = 0;
         uint32_t output_lines_count = 0;
         uint32_t state_count = 0;
-        // dnf sdnf;
+        std::vector<dnf> _dnf;
+        std::vector<std::string> states;
         table *_table = nullptr;
     public:
         struct_synthesis(table *synt_table);
+        void sdnf();
         void mdnf();
+        void print(std::ostream &);
 };
 
 #endif
