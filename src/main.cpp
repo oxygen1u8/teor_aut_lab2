@@ -32,5 +32,7 @@ int main()
 
     synt.check(check_file);
 
+    check_file.close();
+
     return 0;
 }

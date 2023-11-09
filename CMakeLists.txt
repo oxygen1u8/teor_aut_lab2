@@ -12,8 +12,8 @@ add_executable(${PROJECT_NAME}
     ${SRC_DIR}/table.cpp
     ${SRC_DIR}/table_item.cpp
     ${SRC_DIR}/struct_synthesis.cpp
-    ${TMP_DIR}/dnf.cpp
-    ${TMP_DIR}/impl.cpp
+    # ${TMP_DIR}/dnf.cpp
+    # ${TMP_DIR}/impl.cpp
 )
 
 include_directories(
@@ -21,13 +21,17 @@ include_directories(
     ${LIB_DIR}/..
 )
 
-# target_link_directories(${PROJECT_NAME} PUBLIC ${LIB_DIR})
-# target_link_libraries(${PROJECT_NAME} minimize_dnf)
+target_link_directories(${PROJECT_NAME} PUBLIC ${LIB_DIR})
+target_link_libraries(${PROJECT_NAME} minimize_dnf)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -c -Wall -ggdb")
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND cp ${PROJECT_NAME} ${ROOT_DIR}/${PROJECT_NAME}
     COMMENT "[post] Copy executable file ${PROJECT_NAME}"
+)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND cp compile_commands.json ${ROOT_DIR}/compile_commands.json
+    COMMENT "[post] Copy compile_commands.json"
 )
