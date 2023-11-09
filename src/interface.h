@@ -44,12 +44,14 @@ class struct_synthesis {
         uint32_t state_count = 0;
         std::vector<dnf> _dnf;
         std::vector<std::string> states;
+        std::vector<uint32_t> outputs;
         table *_table = nullptr;
     public:
         struct_synthesis(table *synt_table);
         void sdnf();
         void mdnf();
         void print(std::ostream &);
+        void check(std::ifstream &);
 };
 
 #endif
