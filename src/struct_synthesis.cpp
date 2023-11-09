@@ -213,17 +213,20 @@ void struct_synthesis::sdnf()
         tmp_str.clear();
     }
 
-    for (uint32_t i = 0; i < this->outputs.size(); i++) {
+    mask = 0;
+    for (uint32_t i = 0; i < this->output_lines_count; i++) {
+        mask = (1 << i);
         for (uint32_t j = 0; j < row_count; j++) {
             for (uint32_t k = 0; k < column_count; k++) {
                 tmp_item = this->_table->value(j, k);
-                if (tmp_item.item_output() == this->outputs[i]) {
+                if ((tmp_item.item_output() > 0) && (tmp_item.item_output() & mask)) {
                     tmp_str = int_to_str2(j, this->input_lines_count)
                         + this->states[k];
                     impls.push_back(tmp_str);
                 }
             }
         }
+
         for (uint32_t j = 0; j < impls.size(); j++) {
             int_impls.push_back(str2_to_int(impls[j]));
         }
@@ -242,7 +245,7 @@ void struct_synthesis::sdnf()
     
         impls.clear();
         int_impls.clear();
-        tmp_str.clear();
+        tmp_str.clear();        
     }
 }
 
